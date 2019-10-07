@@ -12,6 +12,11 @@ class Category extends Model
         $builder->whereNull('parent_id');
     }
 
+    public function scopeOrdered(Builder $builder, $direction = 'asc')
+    {
+        $builder->orderBy('order', $direction);
+    }
+
     public function children()
     {
         return $this->hasMany(Category::class);
