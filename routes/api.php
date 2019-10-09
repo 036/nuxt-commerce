@@ -1,3 +1,3 @@
 <?php
 
-Route::resource('category', 'Categories\CategoryController');
+Route::resource('categories', 'Categories\CategoryController');
