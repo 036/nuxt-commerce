@@ -11,11 +11,13 @@ class CategoryIndexTest extends TestCase
 {
     public function test_it_returns_a_collection_of_categories()
     {
-        $category = factory(Category::class)->create();
+        $categories = factory(Category::class,2)->create();
 
         $this->json('GET', 'api/categories')
             ->assertJsonFragment([
-                'slug' => $category->slug
+                'slug' => $categories->get(0)->slug,
+            ], [
+                'slug' => $categories->get(1)->slug
             ]);
     }
 }
