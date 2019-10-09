@@ -20,4 +20,16 @@ class CategoryIndexTest extends TestCase
                 'slug' => $categories->get(1)->slug
             ]);
     }
+
+    public function test_it_returns_only_parent_categories()
+    {
+        $category = factory(Category::class)->create();
+
+        $category->children()->save(
+            factory(Category::class)->create()
+        );
+
+        $this->json('GET', 'api/categories')
+            ->assertJsonCount(1, 'data');
+    }
 }
