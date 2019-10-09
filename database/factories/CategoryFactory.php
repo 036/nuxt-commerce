@@ -5,10 +5,11 @@
 use App\Model;
 use App\Models\Category;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $name = $faker->unique()->name,
-        'slug' => str_slug($name)
+        'slug' => Str::slug($name)
     ];
 });
